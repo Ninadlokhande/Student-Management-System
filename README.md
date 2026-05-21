@@ -112,74 +112,7 @@ Below is the diagrammatic representation of how data moves asynchronously throug
        |    | total_copies     |
        |    | available_copies |
        +-----------------------+
-The Migration Script (schema.sql)Save the code below as a file named exactly schema.sql in your s_m_s_backend/ folder:SQLCREATE DATABASE IF NOT EXISTS student_management;
-USE student_management;
 
-CREATE TABLE IF NOT EXISTS users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    role ENUM('admin','teacher','student') NOT NULL
-);
-
-CREATE TABLE IF NOT EXISTS departments (
-    department_id INT AUTO_INCREMENT PRIMARY KEY,
-    department_name VARCHAR(100) UNIQUE NOT NULL,
-    head_of_department_id INT,
-    FOREIGN KEY (head_of_department_id) REFERENCES users(user_id) ON DELETE SET NULL
-);
-
-CREATE TABLE IF NOT EXISTS students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(50) NOT NULL,
-    last_name VARCHAR(50) NOT NULL,
-    date_of_birth DATE,
-    enrollment_date DATE,
-    user_id INT,
-    department_id INT,
-    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE,
-    FOREIGN KEY (department_id) REFERENCES departments(department_id) ON DELETE SET NULL
-);
-
-CREATE TABLE IF NOT EXISTS courses (
-    course_id INT AUTO_INCREMENT PRIMARY KEY,
-    course_name VARCHAR(100) NOT NULL,
-    teacher_id INT, 
-    credits INT NOT NULL,
-    department_id INT,
-    FOREIGN KEY (teacher_id) REFERENCES users(user_id) ON DELETE SET NULL,
-    FOREIGN KEY (department_id) REFERENCES departments(department_id) ON DELETE SET NULL
-);
-
-CREATE TABLE IF NOT EXISTS enrollments (
-    enrollment_id INT AUTO_INCREMENT PRIMARY KEY,
-    student_id INT NOT NULL,
-    course_id INT NOT NULL,
-    grade VARCHAR(2),
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
-    FOREIGN KEY (course_id) REFERENCES courses(course_id) ON DELETE CASCADE
-);
-
-CREATE TABLE IF NOT EXISTS books (
-    book_id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255) NOT NULL,
-    author VARCHAR(150) NOT NULL,
-    isbn VARCHAR(20) UNIQUE,
-    total_copies INT NOT NULL DEFAULT 1,
-    available_copies INT NOT NULL DEFAULT 1
-);
-
-CREATE TABLE IF NOT EXISTS book_loans (
-    loan_id INT AUTO_INCREMENT PRIMARY KEY,
-    book_id INT NOT NULL,
-    student_id INT NOT NULL,
-    borrow_date DATE NOT NULL,
-    return_date DATE,
-    due_date DATE NOT NULL,
-    status ENUM('borrowed', 'returned', 'overdue') DEFAULT 'borrowed',
-    FOREIGN KEY (book_id) REFERENCES books(book_id) ON DELETE CASCADE,
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE
-);
 💻 Required Systems Environment & Dev Tools1. Mandated System ProgramsJava Development Kit (JDK 8 or Higher): Necessary to compile syntax trees and manage the server process threads.MySQL Community Server (v8.0+): Local relational database infrastructure running on system port 3306 to house the storage layer.Web Browser Engine: (e.g., Google Chrome, Brave, Edge, or Firefox) with updated JavaScript runtime engines for optimal layout rendering.2. Recommended IDE Tooling (VS Code Productivity Extensions)Extension Pack for Java (by Microsoft): Automatically flags syntax bugs and resolves compiler paths for standalone class files.Prettier - Code Formatter: Automatically structures your HTML indents, formats Javascript blocks, and tracks uniform padding rules inside CSS blocks on save.MySQL (by Weijan Chen): Allows you to interact with database records and run SQL queries inside tabs within your code editor without opening separate external tools.🚀 Environment Setup & Execution ManualFollow these comprehensive initialization steps sequentially to compile, link, and deploy the application locally:Step 1: Execute Database SetupLog into your local MySQL terminal command line interface or system workbench tool, and execute your schema initialization migrations:SQLCREATE DATABASE student_management;
 USE student_management;
 

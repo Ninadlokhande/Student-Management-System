@@ -1,38 +1,44 @@
-# Student Management System
+# 🎓 EduStream SMS - Native Full-Stack Student Management System
 
-a lightweight, high-performance, full-stack web application designed to manage student profiles, academic courses, department routing, and campus library metrics. 
+EduStream SMS is a lightweight, high-performance, full-stack web ecosystem engineered from the ground up to handle student directories, academic course enrollments, institutional departments, and campus library loan loops.
 
-Unlike standard beginner apps that rely on bulk frameworks like Spring Boot, this system is engineered from the ground up using **Vanilla Java Core APIs** (`com.sun.net.httpserver`), direct **JDBC**, and a custom JSON utility matrix. This architectural choice demonstrates deep fundamental mastery of low-level backend lifecycles, manual HTTP routing, and manual relational data binding.
-
----
-
-## 🚀 Key Features
-
-- **Advanced Relational Dashboard:** Seamlessly track students, metrics, departments, and active library loans on a single interface.
-- **Normalized Data Architecture:** Implements a highly normalized relational system spanning 7 interconnected database tables.
-- **Transactional Consistency:** Critical write endpoints leverage atomic SQL operations (`setAutoCommit(false)`) ensuring that complex, multi-table queries (such as simultaneously adding a student, an enrollment, and a book loan) either succeed entirely or roll back safely to prevent data corruption.
-- **Cascading Operations:** Leverages automated `ON DELETE CASCADE` and `SET NULL` engine bindings to maintain flawless referential integrity.
-- **Sleek Vanilla Frontend:** Features a modern, mobile-responsive single-page app architecture written in vanilla HTML5, CSS3 (using custom CSS variables and utility classes), and JavaScript (Asynchronous `Fetch` API).
+Rather than relying on bulk enterprise frameworks like Spring Boot or high-overhead Object-Relational Mapping (ORM) tools like Hibernate, this system is built entirely upon **Vanilla Java Core Standard APIs**, raw native **JDBC (PreparedStatements)**, and an asynchronous **ES6 Vanilla JavaScript Single-Page Frontend**. This deliberate architectural choice demonstrates a profound, granular understanding of foundational client-server networking stacks, explicit HTTP lifecycle routing, manual object serialization, and atomic database persistence patterns.
 
 ---
 
-## 🛠️ Tech Stack & Architecture
+## 🚀 Key Features & Engineering Highlights
 
-- **Backend:** Java SE 8+ (Core Java, `HttpServer`, `DriverManager`, PreparedStatements)
-- **Database:** MySQL Community Server (Relational data engine)
-- **Database Driver:** MySQL Connector/J (`v9.7.0`)
-- **Frontend:** HTML5, CSS3 (Modern Flexbox/Grid layouts), Vanilla JavaScript (ES6)
+* **Advanced Relational Dashboard:** Seamlessly tracks multi-layered student matrices, department metrics, course profiles, and live library loans through a single, responsive user interface.
+* **Highly Normalized Data Architecture:** Enforces clean data design practices across 7 interconnected database tables linked via relational foreign keys and precise operational constraints.
+* **Transactional Consistency (AC ACID Compliance):** Critical database write endpoints manage operations atomically by disabling autocommit (`conn.setAutoCommit(false)`). Complex multi-table writes (such as creating a student, evaluating/instantiating a course row, and opening a library ledger entry) execute as a single transaction. Any partial structural failure or network interruption triggers an instant, protective `conn.rollback()` loop to eliminate orphan entries or split database states.
+* **Automated Cascading Constraints:** Integrates automated engine triggers (`ON DELETE CASCADE` and `SET NULL`) directly into the relational schema. Deleting a student profile cleans up matching records inside the database dynamically, preventing data bloat and dead memory leaks without requiring redundant query sequences.
+* **Sleek Single-Page Architecture (SPA):** Features a responsive dashboard frontend built entirely with semantic HTML5, CSS3 tokenized custom variables, and asynchronous JavaScript `Fetch` API routines, eliminating full-page browser refreshes during data mutations.
 
 ---
 
-## 📂 Project Structure
+## 🛠️ Tech Stack Matrix
+
+* **Backend Core:** Java SE 8+ (Standard Core APIs, `com.sun.net.httpserver.HttpServer`, `com.sun.net.httpserver.HttpExchange`)
+* **Persistence Layer:** Native JDBC Engine (`java.sql.Connection`, `java.sql.PreparedStatement`, `java.sql.ResultSet`)
+* **Database Engine:** MySQL Community Server (InnoDb Relational Storage Engine)
+* **Database Driver:** MySQL Connector/J Drivers (`v9.7.0`)
+* **Frontend Web Layout:** HTML5 (Semantic Design), CSS3 (Modern Flexbox/Grid systems, Variable Styling Tokens), Vanilla JavaScript (ES6, Asynchronous Fetch Promises, Dynamic DOM Manipulation)
+
+---
+
+## 📂 Project Repository Directory Tree
+
+Your folder organization must match this structure precisely to ensure that classpath dependencies resolve accurately during local compilation and deployment routines:
 
 ```text
-├── s_m_s_backend/
-│   ├── static/
-│   │   ├── index.html       # Single Page Application UI Entry
-│   │   ├── style.css        # Responsive dashboard design variables
-│   │   └── script.js        # REST API Fetch controller logic
-│   ├── src/
-│   │   └── StudentManagementSystem.java  # Main Server Router & DB Repository
-│   └── mysql-connector-j-9.7.0.jar       # JDBC Bridge Driver Core component
+Student-Management-System/
+├── .gitignore                         # Excludes compiled binary files (*.class) from remote tracking
+├── README.md                          # Production-ready architectural guide & developer documentation
+├── schema.sql                         # Complete relational schema configuration & initialization script
+├── mysql-connector-j-9.7.0.jar        # Core JDBC Database Driver dependency component
+├── src/
+│   └── StudentManagementSystem.java   # Central Java Backend server, routing handlers, and transactional repository
+└── static/
+    ├── index.html                     # Unified single-page web panel layout
+    ├── style.css                      # Tokenized visual dashboard theme stylesheets
+    └── script.js                      # Asynchronous REST client data stream controller

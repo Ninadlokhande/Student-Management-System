@@ -1,6 +1,6 @@
-Here is your complete, comprehensive, and copy-pasteable All-In-One README.md file.Since you don't have image assets ready to upload to GitHub, I have built highly professional, clean ASCII text diagrams directly into the Markdown layout. These will display perfectly as beautiful visual maps directly on your repository page to explain your data flows and database schema design to recruiters.Copy and paste the entire text block below into a file named exactly README.md in your root folder:Markdown# 🎓 EduStream SMS - Native Full-Stack Student Management System
+ Full-Stack Student Management System
 
-EduStream SMS is a high-performance, single-file backend web ecosystem engineered from the ground up to handle student directories, academic course enrollments, institutional departments, and campus library metrics.
+ a high-performance, single-file backend web ecosystem engineered from the ground up to handle student directories, academic course enrollments, institutional departments, and campus library metrics.
 
 Rather than relying on bulk enterprise frameworks like Spring Boot or heavy Object-Relational Mapping (ORM) tools like Hibernate, this application is written entirely using **Vanilla Java Core APIs**, raw native **JDBC (PreparedStatements)**, and an asynchronous **ES6 Vanilla JavaScript Frontend**. This specific architectural choice demonstrates a profound, low-level understanding of core client-server networking sockets, explicit HTTP lifecycle routing, manual stream serialization, and data persistence pipelines.
 

@@ -1,0 +1,22 @@
+# Compiled Java class files
+*.class
+
+# Log files
+*.log
+
+# Crash reports
+hs_err_pid*
+
+# IDE specific settings (VS Code / IntelliJ / Eclipse)
+.project
+.classpath
+.settings/
+.vscode/
+.idea/
+*.iml
+out/
+bin/
+
+# OS hidden files
+.DS_Store
+Thumbs.db

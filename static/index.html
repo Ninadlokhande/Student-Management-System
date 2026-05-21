@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Student Management System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="app-header">
+        <div class="brand">
+            <div class="brand-icon">🎓</div>
+            <h1>EduStream <span class="brand-sub">SMS</span></h1>
+        </div>
+        <nav class="nav-links">
+            <button id="nav-view" class="nav-btn active" onclick="showPage('view')">📊 View Records</button>
+            <button id="nav-form" class="nav-btn" onclick="openAddForm()">➕ Add New Record</button>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <div id="viewPage" class="page-card">
+            <div class="card-header">
+                <h2>Student Directory</h2>
+                <p class="card-subtitle">Overview of registered student listings, departments, and active library loans.</p>
+            </div>
+            <div class="table-container">
+                <table id="studentTable">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Department</th>
+                            <th>Active Course</th>
+                            <th>Borrowed Book</th>
+                            <th>Loan Status</th>
+                            <th class="text-right">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div id="formPage" class="page-card" style="display:none;">
+            <div class="card-header">
+                <h2 id="formTitle">Student Record Sheet</h2>
+                <p class="card-subtitle">Provide information below to log updates to core records.</p>
+            </div>
+            
+            <form id="studentForm" class="grid-form">
+                <input type="hidden" id="studentId">
+                
+                <div class="form-group">
+                    <label for="fname">First Name</label>
+                    <input type="text" id="fname" placeholder="e.g. John" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lname">Last Name</label>
+                    <input type="text" id="lname" placeholder="e.g. Doe" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="dob">Date of Birth</label>
+                    <input type="date" id="dob">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dept">Department Group</label>
+                    <input type="text" id="dept" placeholder="e.g. Computer Science">
+                </div>
+                
+                <div class="form-group">
+                    <label for="course">Assigned Course Name</label>
+                    <input type="text" id="course" placeholder="e.g. Java Enterprise App Architecture">
+                </div>
+                
+                <div class="form-group">
+                    <label for="grade">Target Term Grade</label>
+                    <input type="text" id="grade" placeholder="e.g. A+">
+                </div>
+                
+                <div class="form-group">
+                    <label for="book">Library Book Title</label>
+                    <input type="text" id="book" placeholder="e.g. Design Patterns">
+                </div>
+                
+                <div class="form-group">
+                    <label for="borrowDate">Borrow Date</label>
+                    <input type="date" id="borrowDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="dueDate">Return Due Date</label>
+                    <input type="date" id="dueDate">
+                </div>
+                
+                <div class="form-group">
+                    <label for="status">Loan Accountability Status</label>
+                    <select id="status">
+                        <option value="borrowed">Borrowed</option>
+                        <option value="returned">Returned</option>
+                        <option value="overdue">Overdue</option>
+                    </select>
+                </div>
+                
+                <div class="form-actions-full">
+                    <button type="button" class="btn-primary" onclick="saveData()">💾 Commit Changes</button>
+                    <button type="button" class="btn-secondary" onclick="showPage('view')">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </main>
+    
+    <script src="script.js"></script>
+</body>
+</html>

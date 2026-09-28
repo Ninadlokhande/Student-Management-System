@@ -1,47 +1,88 @@
-/* --- Modern Dashboard Design Themes & Variables --- */
+/* --- Electric Cyan & Cyber Emerald Theme --- */
 :root {
-    --bg-primary: #f8fafc;
-    --card-bg: #ffffff;
-    --text-main: #0f172a;
-    --text-muted: #64748b;
-    --primary-color: #4f46e5;
-    --primary-hover: #4338ca;
-    --nav-bg: #0f172a;
-    --border-color: #e2e8f0;
-    
-    --success: #10b981;
-    --success-bg: #ecfdf5;
-    --warning: #f59e0b;
-    --warning-bg: #fffbe6;
-    --danger: #ef4444;
-    --danger-bg: #fef2f2;
+    --bg-base: #06090e;
+    --card-bg: rgba(13, 20, 31, 0.75);
+    --card-border: rgba(6, 182, 212, 0.18);
+    --text-main: #f1f5f9;
+    --text-muted: #94a3b8;
+
+    /* Theme Colors: Cyan & Emerald */
+    --accent-cyan: #06b6d4;
+    --accent-teal: #0d9488;
+    --accent-emerald: #10b981;
+    --accent-glow: rgba(6, 182, 212, 0.25);
+
+    /* Status Badges */
+    --badge-borrowed-color: #fbbf24;
+    --badge-borrowed-bg: rgba(251, 191, 36, 0.12);
+    --badge-borrowed-border: rgba(251, 191, 36, 0.35);
+
+    --badge-returned-color: #2dd4bf;
+    --badge-returned-bg: rgba(45, 212, 191, 0.12);
+    --badge-returned-border: rgba(45, 212, 191, 0.35);
+
+    --badge-overdue-color: #fb7185;
+    --badge-overdue-bg: rgba(251, 113, 133, 0.12);
+    --badge-overdue-border: rgba(251, 113, 133, 0.35);
+
+    --radius-lg: 16px;
+    --radius-sm: 8px;
+    --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 body {
-    background-color: var(--bg-primary);
+    background-color: var(--bg-base);
     color: var(--text-main);
     min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
 }
 
-/* --- Layout Components: App Header Navigation --- */
+/* Dynamic Ambient Glow Mesh (Pure CSS) */
+body::before, body::after {
+    content: '';
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    width: 450px;
+    height: 450px;
+    top: -100px;
+    left: -80px;
+    background: radial-gradient(circle, rgba(6, 182, 212, 0.18), transparent 70%);
+}
+
+body::after {
+    width: 550px;
+    height: 550px;
+    bottom: -150px;
+    right: -100px;
+    background: radial-gradient(circle, rgba(16, 185, 129, 0.14), transparent 70%);
+}
+
+/* Header */
 .app-header {
-    background-color: var(--nav-bg);
-    color: white;
-    padding: 0.75rem 2.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+    padding: 1rem 2.5rem;
+    background: rgba(10, 15, 24, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--card-border);
 }
 
 .brand {
@@ -51,86 +92,98 @@ body {
 }
 
 .brand-icon {
-    font-size: 1.75rem;
+    font-size: 1.8rem;
+    filter: drop-shadow(0 0 10px rgba(6, 182, 212, 0.6));
 }
 
 .brand h1 {
     font-size: 1.35rem;
     font-weight: 700;
     letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #ffffff 40%, var(--accent-cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .brand-sub {
-    color: #818cf8;
-    font-size: 0.85rem;
-    font-weight: 400;
-    border: 1px solid #3730a3;
-    padding: 2px 6px;
-    border-radius: 4px;
-    margin-left: 4px;
+    font-size: 0.75rem;
+    color: var(--accent-cyan);
+    border: 1px solid rgba(6, 182, 212, 0.4);
+    background: rgba(6, 182, 212, 0.1);
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
 }
 
 .nav-links {
     display: flex;
-    gap: 8px;
+    gap: 10px;
 }
 
 .nav-btn {
     background: transparent;
-    border: none;
-    color: #94a3b8;
-    font-size: 0.95rem;
-    font-weight: 500;
-    padding: 10px 16px;
-    border-radius: 6px;
+    border: 1px solid transparent;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
     cursor: pointer;
-    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: var(--transition);
 }
 
 .nav-btn:hover {
-    color: white;
-    background-color: rgba(255, 255, 255, 0.05);
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
 }
 
 .nav-btn.active {
-    color: white;
-    background-color: var(--primary-color);
+    color: #fff;
+    background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
+    border-color: rgba(6, 182, 212, 0.4);
+    box-shadow: 0 0 15px var(--accent-glow);
 }
 
-/* --- Global Structure Layout Blocks --- */
+/* Main Content Container */
 .main-content {
-    padding: 2.5rem;
-    max-width: 1280px;
-    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 2.5rem auto;
+    padding: 0 1.5rem;
 }
 
+/* Glassmorphic Page Cards */
 .page-card {
     background: var(--card-bg);
-    border-radius: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05), 0 4px 12px rgba(0,0,0,0.03);
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--card-border);
+    backdrop-filter: blur(20px);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    animation: fadeIn 0.4s ease-out;
+    animation: fadeIn 0.3s ease-out;
 }
 
 .card-header {
     padding: 1.75rem 2rem;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--card-border);
+    background: rgba(255, 255, 255, 0.015);
 }
 
 .card-header h2 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--text-main);
+    color: #fff;
 }
 
 .card-subtitle {
-    font-size: 0.9rem;
+    font-size: 0.88rem;
     color: var(--text-muted);
     margin-top: 4px;
 }
 
-/* --- Responsive Table Directory View Styles --- */
+/* Table Styling */
 .table-container {
     overflow-x: auto;
 }
@@ -138,56 +191,106 @@ body {
 table {
     width: 100%;
     border-collapse: collapse;
-    text-align: left;
 }
 
 th {
-    background-color: #f8fafc;
-    color: var(--text-muted);
-    font-size: 0.8rem;
-    font-weight: 600;
+    background: rgba(6, 182, 212, 0.05);
+    color: var(--accent-cyan);
+    font-size: 0.78rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.08em;
     padding: 14px 24px;
-    border-bottom: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--card-border);
+    text-align: left;
 }
 
 td {
     padding: 16px 24px;
-    border-bottom: 1px solid var(--border-color);
-    font-size: 0.95rem;
-    color: #334155;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-size: 0.92rem;
+    color: #cbd5e1;
 }
 
-tr:last-child td {
-    border-bottom: none;
+tr:hover td {
+    background: rgba(6, 182, 212, 0.03);
 }
 
-tr:hover {
-    background-color: #f8fafc;
-}
-
-/* --- Status Pills / Badges --- */
+/* Status Badges */
 .badge {
     display: inline-flex;
     align-items: center;
-    padding: 4px 10px;
-    border-radius: 50px;
-    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 999px;
+    font-size: 0.78rem;
     font-weight: 600;
     text-transform: capitalize;
 }
 
-.badge.borrowed { color: var(--warning); background-color: var(--warning-bg); border: 1px solid #fde68a; }
-.badge.returned { color: var(--success); background-color: var(--success-bg); border: 1px solid #a7f3d0; }
-.badge.overdue  { color: var(--danger); background-color: var(--danger-bg); border: 1px solid #fecaca; }
+.badge.borrowed {
+    color: var(--badge-borrowed-color);
+    background: var(--badge-borrowed-bg);
+    border: 1px solid var(--badge-borrowed-border);
+}
 
-/* --- Complex Form Grid Alignment Profiles --- */
+.badge.returned {
+    color: var(--badge-returned-color);
+    background: var(--badge-returned-bg);
+    border: 1px solid var(--badge-returned-border);
+}
+
+.badge.overdue {
+    color: var(--badge-overdue-color);
+    background: var(--badge-overdue-bg);
+    border: 1px solid var(--badge-overdue-border);
+}
+
+/* Action Buttons */
+.actions-cell {
+    display: flex;
+    gap: 8px;
+    justify-content: flex-end;
+}
+
+.btn-inline-edit, .btn-inline-delete {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.btn-inline-edit {
+    background: rgba(6, 182, 212, 0.1);
+    color: var(--accent-cyan);
+    border: 1px solid rgba(6, 182, 212, 0.3);
+}
+
+.btn-inline-edit:hover {
+    background: var(--accent-cyan);
+    color: #000;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+.btn-inline-delete {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.btn-inline-delete:hover {
+    background: #ef4444;
+    color: #fff;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.4);
+}
+
+/* Form Layout & Fields */
 .grid-form {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
-    padding: 2rem;
+    padding: 2.2rem;
 }
 
 .form-group {
@@ -197,28 +300,28 @@ tr:hover {
 }
 
 .form-group label {
-    font-size: 0.85rem;
+    font-size: 0.82rem;
     font-weight: 600;
-    color: #475569;
+    color: #94a3b8;
 }
 
-.grid-form input, 
+.grid-form input,
 .grid-form select {
     width: 100%;
-    padding: 10px 14px;
-    border: 1px solid var(--border-color);
-    border-radius: 6px;
-    font-size: 0.95rem;
-    background-color: #fff;
-    color: var(--text-main);
-    transition: all 0.15s ease;
+    padding: 11px 14px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
+    background: rgba(15, 23, 42, 0.6);
+    color: #fff;
+    outline: none;
+    transition: var(--transition);
 }
 
-.grid-form input:focus, 
+.grid-form input:focus,
 .grid-form select:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
 }
 
 .form-actions-full {
@@ -227,52 +330,44 @@ tr:hover {
     gap: 12px;
     margin-top: 1rem;
     padding-top: 1.5rem;
-    border-top: 1px solid var(--border-color);
+    border-top: 1px solid var(--card-border);
 }
 
-/* --- Standard Pill Action Control Buttons --- */
 .btn-primary, .btn-secondary {
-    padding: 12px 24px;
-    border-radius: 6px;
-    font-size: 0.95rem;
+    padding: 11px 22px;
+    border-radius: var(--radius-sm);
+    font-size: 0.92rem;
     font-weight: 600;
     cursor: pointer;
     border: none;
-    transition: background 0.15s ease;
+    transition: var(--transition);
 }
 
-.btn-primary { background-color: var(--primary-color); color: white; }
-.btn-primary:hover { background-color: var(--primary-hover); }
-.btn-secondary { background-color: #e2e8f0; color: #475569; }
-.btn-secondary:hover { background-color: #cbd5e1; }
-
-/* Inline Action Controls Table context */
-.actions-cell {
-    display: flex;
-    gap: 6px;
-    justify-content: flex-end;
+.btn-primary {
+    background: linear-gradient(135deg, var(--accent-teal), var(--accent-cyan));
+    color: #041014;
+    font-weight: 700;
 }
 
-.btn-inline-edit, .btn-inline-delete {
-    padding: 6px 12px;
-    font-size: 0.85rem;
-    font-weight: 500;
-    border-radius: 4px;
-    cursor: pointer;
-    border: 1px solid var(--border-color);
-    background-color: white;
-    transition: all 0.15s ease;
+.btn-primary:hover {
+    box-shadow: 0 0 16px var(--accent-glow);
+    transform: translateY(-1px);
 }
 
-.btn-inline-edit { color: #d97706; }
-.btn-inline-edit:hover { background-color: #fef3c7; border-color: #fde68a; }
-.btn-inline-delete { color: #dc2626; }
-.btn-inline-delete:hover { background-color: #fee2e2; border-color: #fecaca; }
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.08);
+    color: #94a3b8;
+}
+
+.btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+}
 
 .text-right { text-align: right; }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(6px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
